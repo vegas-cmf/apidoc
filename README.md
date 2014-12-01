@@ -8,7 +8,7 @@ Usage
 
 ```
 "vegas-cmf/apidoc" : "1.0.0"
-``
+```
 
 * Create CLI task which extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract.php
 
