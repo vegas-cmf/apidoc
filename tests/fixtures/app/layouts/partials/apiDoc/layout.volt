@@ -55,6 +55,11 @@
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Documentation rendered with <a href="https://github.com/vegas-cmf/apidoc">Vegas ApiDoc Generator</a> - {{ date('Y-m-d H:i:s') }}</p>
+    </div>
+</footer>
 <script>
 $(document).ready(function() {
     function syntaxHighlight(json) {

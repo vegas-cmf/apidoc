@@ -15,6 +15,8 @@ namespace Vegas\ApiDoc;
 use Phalcon\Annotations\Adapter\Memory;
 use Phalcon\Annotations\AdapterInterface;
 use Phalcon\DI;
+use Phalcon\Events\EventsAwareInterface;
+use Phalcon\Events\ManagerInterface;
 use Vegas\ApiDoc\Exception\InvalidRendererException;
 
 /**
@@ -88,7 +90,7 @@ use Vegas\ApiDoc\Exception\InvalidRendererException;
  * </code>
  * @package Vegas\ApiDoc
  */
-class Generator 
+class Generator implements EventsAwareInterface
 {
     /**
      * @var AdapterInterface
@@ -118,6 +120,11 @@ class Generator
     private $renderer;
 
     /**
+     * @var \Phalcon\Events\Manager
+     */
+    protected $eventsManager;
+
+    /**
      * Instantiates annotations reader
      * Instantiates file autoloader
      *
@@ -130,6 +137,22 @@ class Generator
         $this->options = $options;
         $this->annotationParser = new \Phalcon\Annotations\Reader();
         $this->loader = new \Phalcon\Loader();
+    }
+
+    /**
+     * Sets default events manager
+     */
+    public function setEventsManager($eventsManager)
+    {
+        $this->eventsManager = $eventsManager;
+    }
+
+    /**
+     * @return \Phalcon\Events\Manager|ManagerInterface
+     */
+    public function getEventsManager()
+    {
+        return $this->eventsManager;
     }
 
     /**
@@ -178,6 +201,10 @@ class Generator
      */
     public function build()
     {
+        if ($this->eventsManager instanceof ManagerInterface) {
+            $this->eventsManager->fire('generator:beforeBuild', $this);
+        }
+
         $collections = array();
         $files = $this->setupClassesAutoloader();
         foreach ($files as $className => $file) {
@@ -192,6 +219,10 @@ class Generator
             }
 
             $collections[$className] = $this->getClassCollection($className);
+        }
+
+        if ($this->eventsManager instanceof ManagerInterface) {
+            $this->eventsManager->fire('generator:afterBuild', $this, $collections);
         }
 
         return $collections;
@@ -341,9 +372,19 @@ class Generator
      */
     public function render()
     {
+        if ($this->eventsManager instanceof ManagerInterface) {
+            $this->eventsManager->fire('generator:beforeRender', $this);
+        }
+
         if (!$this->renderer instanceof \Vegas\ApiDoc\RendererInterface) {
             throw new InvalidRendererException();
         }
-        return $this->renderer->render();
+        $output = $this->renderer->render();
+
+        if ($this->eventsManager instanceof ManagerInterface) {
+            $this->eventsManager->fire('generator:afterRender', $this);
+        }
+
+        return $output;
     }
 }

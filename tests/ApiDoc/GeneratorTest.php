@@ -48,7 +48,7 @@ class GeneratorTest extends \Vegas\Tests\TestCase
     public function testShouldThrowExceptionAboutInvalidRenderer()
     {
         $generator = new \Vegas\ApiDoc\Generator(APP_ROOT . '/app/modules', [
-            'match' => '/(.*)C ontroller(.*)\.php/i',
+            'match' => '/(.*)Controller(.*)\.php/i',
             'verbose' => false
         ]);
         $generator->build();

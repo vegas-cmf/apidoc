@@ -43,6 +43,11 @@ class Renderer implements RendererInterface
     private $view;
 
     /**
+     * @var array
+     */
+    private $viewParams = [];
+
+    /**
      * @param array $collections
      * @param string $templatePath
      */
@@ -61,6 +66,18 @@ class Renderer implements RendererInterface
     }
 
     /**
+     * Sets view var
+     *
+     * @param $varName
+     * @param $varValue
+     * @throws InvalidViewComponentException
+     */
+    public function setViewVar($varName, $varValue)
+    {
+        $this->viewParams[$varName] = $varValue;
+    }
+
+    /**
      * Renders output content
      *
      * @return string
@@ -70,6 +87,10 @@ class Renderer implements RendererInterface
     {
         if (!$this->view && $this->view instanceof \Phalcon\Mvc\ViewInterface) {
             throw new InvalidViewComponentException();
+        }
+
+        foreach ($this->viewParams as $param => $value) {
+            $this->view->setVar($param, $value);
         }
 
         ob_start();
