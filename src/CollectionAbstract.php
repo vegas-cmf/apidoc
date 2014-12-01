@@ -42,6 +42,39 @@ abstract class CollectionAbstract implements \ArrayAccess
     }
 
     /**
+     * @param $name
+     * @param $value
+     */
+    public function __set($name, $value)
+    {
+        $this->offsetSet($name, $value);
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     * @throws CollectionArgumentNotFoundException
+     */
+    public function __get($name)
+    {
+        return $this->offsetGet($name);
+    }
+
+    /**
+     * @param $argument
+     * @return bool
+     */
+    public function hasArgument($argument)
+    {
+        try {
+            $reflectionProperty = new \ReflectionProperty($this, $argument);
+        } catch (\ReflectionException $e) {
+            return false;
+        }
+        return $reflectionProperty->isPublic();
+    }
+
+    /**
      * (PHP 5 &gt;= 5.0.0)<br/>
      * Whether a offset exists
      * @link http://php.net/manual/en/arrayaccess.offsetexists.php
@@ -55,7 +88,7 @@ abstract class CollectionAbstract implements \ArrayAccess
      */
     public function offsetExists($offset)
     {
-        return property_exists($this, $offset);
+        return $this->hasArgument($offset);
     }
 
     /**
@@ -65,12 +98,17 @@ abstract class CollectionAbstract implements \ArrayAccess
      * @param mixed $offset <p>
      * The offset to retrieve.
      * </p>
+     * @throws \CollectionArgumentNotFoundException
+     * @throws \Phalcon\Exception
      * @return mixed Can return all value types.
      */
     public function offsetGet($offset)
     {
         if ($offset == 'slug') {
             return \Phalcon\Utils\Slug::generate($this->offsetGet('name'));
+        }
+        if (!$this->hasArgument($offset)) {
+            throw new \CollectionArgumentNotFoundException(get_called_class(), $offset);
         }
         return $this->{$offset};
     }
@@ -89,7 +127,7 @@ abstract class CollectionAbstract implements \ArrayAccess
      */
     public function offsetSet($offset, $value)
     {
-        $this->{$offset} = $value;
+        $this->setArgument($offset, $value);
     }
 
     /**
@@ -99,10 +137,14 @@ abstract class CollectionAbstract implements \ArrayAccess
      * @param mixed $offset <p>
      * The offset to unset.
      * </p>
+     * @throws CollectionArgumentNotFoundException
      * @return void
      */
     public function offsetUnset($offset)
     {
+        if (!$this->hasArgument($offset)) {
+            throw new CollectionArgumentNotFoundException(get_called_class(), $offset);
+        }
         $this->{$offset} = null;
     }
 }

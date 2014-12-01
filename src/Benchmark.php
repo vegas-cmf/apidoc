@@ -34,7 +34,7 @@ class Benchmark
      */
     public function start()
     {
-        $this->startedAt = microtime();
+        $this->startedAt = microtime(true);
     }
 
     /**
@@ -42,7 +42,7 @@ class Benchmark
      */
     public function finish()
     {
-        $this->finishedAt = microtime();
+        $this->finishedAt = microtime(true);
     }
 
     /**
