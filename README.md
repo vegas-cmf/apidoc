@@ -10,6 +10,13 @@ Usage
 "vegas-cmf/apidoc" : "1.0.0"
 ```
 
+and run composer update
+
+```
+php composer.phar update
+```
+
+
 * Create CLI task which extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract.php
 
 ```
