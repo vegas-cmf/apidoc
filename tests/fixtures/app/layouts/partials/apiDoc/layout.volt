@@ -50,6 +50,11 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="container-fluid">
+                <div class="row hide" id="search-not-found">
+                    <div class="alert alert-warning">
+                        Nothing found...
+                    </div>
+                </div>
                 {% for collection in collections %}
                     {{ partial('apiDoc/partials/collection', ['collection': collection]) }}
                 {% endfor %}
@@ -86,7 +91,6 @@
             hljs.highlightBlock(block);
         });
         $('.collapse').collapse();
-
         $('.nav-sidebar > li').on('click', 'a', function(e) {
             e.preventDefault();
             $('.nav-sidebar').find('li.active').removeClass('active');
@@ -96,7 +100,6 @@
                 scrollTop: $($(this).attr('href')).offset().top
             });
         });
-
         $('#search-api-phrase').on('keyup', function() {
             if ($(this).val().length > 2) {
                 var phrase = $(this).val();
@@ -108,8 +111,23 @@
                         $(this).parents('.panel-group').show();
                     }
                 });
+                $('.nav-sidebar li').each(function() {
+                    var reg = new RegExp(phrase, "i");
+                    if ($(this).text().search(reg) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
             } else {
                 $('.panel-group').each(function() { $(this).show(); });
+                $('.nav-sidebar li').each(function() { $(this).show(); });
+            }
+
+            if ($('.panel-group').find(':visible').length == 0 && $('.nav-sidebar li').find(':visible').length == 0) {
+                $('#search-not-found').removeClass('hide');
+            } else {
+                $('#search-not-found').addClass('hide');
             }
         });
     });
