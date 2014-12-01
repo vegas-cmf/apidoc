@@ -54,6 +54,14 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
     abstract protected function getOutputPath();
 
     /**
+     * Returns path to layout file
+     * Note. Remember to skip extension
+     *
+     * @return string
+     */
+    abstract protected function getLayoutFilePath();
+
+    /**
      * Generates documentation
      *
      * Usage
@@ -102,7 +110,7 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
         //instantiate default renderer
         $renderer = new \Vegas\ApiDoc\Renderer(
             $collections,
-            $view->getPartialsDir() . 'apiDoc/layout'
+            $this->getLayoutFilePath()
         );
         $renderer->setView($view);
         /**

@@ -27,4 +27,9 @@ class ApidocTask extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract
     {
         return APP_ROOT . '/public/apiDoc/';
     }
+
+    protected function getLayoutFilePath()
+    {
+        return APP_ROOT . '/app/layouts/partials/apiDoc/layout';
+    }
 }
