@@ -37,7 +37,7 @@ abstract class CollectionAbstract implements \ArrayAccess
             }
             $reflectionProperty->setValue($this, $value);
         } catch (\ReflectionException $e) {
-            throw new CollectionArgumentNotFoundException(static::class, $argument);
+            throw new CollectionArgumentNotFoundException(get_called_class(), $argument);
         }
     }
 

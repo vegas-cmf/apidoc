@@ -15,6 +15,7 @@ namespace Vegas\ApiDoc;
 use Phalcon\Annotations\Adapter\Memory;
 use Phalcon\Annotations\AdapterInterface;
 use Phalcon\DI;
+use Vegas\ApiDoc\Exception\InvalidRendererException;
 
 /**
  * Class Generator
@@ -335,10 +336,14 @@ class Generator
     /**
      * Renders output file using renderer object
      *
+     * @throws InvalidRendererException
      * @return string
      */
     public function render()
     {
+        if (!$this->renderer instanceof \Vegas\ApiDoc\RendererInterface) {
+            throw new InvalidRendererException();
+        }
         return $this->renderer->render();
     }
 }

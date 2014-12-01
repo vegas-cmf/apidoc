@@ -1,9 +1,9 @@
 <?php
 /**
- * TestController.php
+ * NestedController.php
  */
 
-namespace ApiTest\Controllers;
+namespace ApiTest\Controllers\V2;
 
 use ApiTest\Services\Exception\ApiException;
 use Vegas\Mvc\Controller\ControllerAbstract;
@@ -11,39 +11,39 @@ use Phalcon\Mvc\Dispatcher;
 
 /**
  * @api(
- *  name='Test',
- *  description='Test API',
+ *  name='Nested',
+ *  description='Nested API',
  *  version='1.0.0'
  * )
  */
-class TestController extends ControllerAbstract
+class NestedController extends ControllerAbstract
 {
     /**
      * @api(
      *  method='GET',
-     *  description='Test',
-     *  name='Get test object',
-     *  url='/api/test/{id}',
+     *  description='Nested',
+     *  name='Get nested object',
+     *  url='/api/nested/{id}',
      *  version='1.0.0',
      *  params=[
-     *      {name: 'id', type: 'string', description: 'Test ID'}
+     *      {name: 'id', type: 'string', description: 'Nested ID'}
      *  ],
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
      *  errors=[
-     *      {type: 'Error 404', description: 'Test was not found'},
+     *      {type: 'Error 404', description: 'Nested was not found'},
      *      {type: 'Error 500', description: 'Application error'}
      *  ],
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response=[
-     *      {name: 'id', type: 'MongoId', description: 'Test ID'},
-     *      {name: 'name', type: 'string', description: 'Foo name'}
+     *      {name: 'id', type: 'MongoId', description: 'Nested ID'},
+     *      {name: 'name', type: 'string', description: 'Nested name'}
      *  ],
      *  responseExample='{
-     *      "id": "123",
-     *      "name": "Test"
+     *      "id": "456",
+     *      "name": "Nested"
      *  }'
      * )
      */
@@ -55,8 +55,8 @@ class TestController extends ControllerAbstract
             }
             return $this->jsonResponse(
                 [
-                    'id' => '123',
-                    'name' => 'Test 1'
+                    'id' => '456',
+                    'name' => 'Nested 1'
                 ]
             );
         } catch (ApiException $e) {
@@ -73,9 +73,9 @@ class TestController extends ControllerAbstract
     /**
      * @api(
      *  method='GET',
-     *  description='Tests list',
-     *  name='Get list of tests',
-     *  url='/api/test',
+     *  description='Nested list',
+     *  name='Get list of nested',
+     *  url='/api/nested',
      *  version='1.0.0',
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
@@ -87,22 +87,22 @@ class TestController extends ControllerAbstract
      *  responseContentType='application/json',
      *  response=[
      *      [
-     *          {name: 'id', type: 'MongoId', description: 'Test ID'},
-     *          {name: 'name', type: 'string', description: 'Test name'}
+     *          {name: 'id', type: 'MongoId', description: 'Nested ID'},
+     *          {name: 'name', type: 'string', description: 'Nested name'}
      *      ],
      *      [
-     *          {name: 'id', type: 'MongoId', description: 'Test ID'},
-     *          {name: 'name', type: 'string', description: 'Test name'}
+     *          {name: 'id', type: 'MongoId', description: 'Nested ID'},
+     *          {name: 'name', type: 'string', description: 'Nested name'}
      *      ]
      *  ],
      *  responseExample='[
      *      {
-     *          "id": "123",
-     *          "name": "Test"
+     *          "id": "456",
+     *          "name": "Nested 1"
      *      },
      *      {
-     *          "id": "124",
-     *          "name": "Test"
+     *          "id": "567",
+     *          "name": "Nested 2"
      *      }
      *  ]'
      * )
@@ -113,12 +113,12 @@ class TestController extends ControllerAbstract
         try {
             return $this->jsonResponse(
                 [
-                    'id' => '123',
-                    'name' => 'Test 1'
+                    'id' => '456',
+                    'name' => 'Nested 1'
                 ],
                 [
-                    'id' => '124',
-                    'name' => 'Test 2'
+                    'id' => '567',
+                    'name' => 'Nested 2'
                 ]
             );
         } catch (\Exception $e) {

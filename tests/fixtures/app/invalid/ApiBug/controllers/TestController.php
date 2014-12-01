@@ -3,7 +3,7 @@
  * TestController.php
  */
 
-namespace ApiTest\Controllers;
+namespace ApiBug\Controllers;
 
 use ApiTest\Services\Exception\ApiException;
 use Vegas\Mvc\Controller\ControllerAbstract;
@@ -21,6 +21,7 @@ class TestController extends ControllerAbstract
     /**
      * @api(
      *  method='GET',
+     *  nonExistingArgument='false',
      *  description='Test',
      *  name='Get test object',
      *  url='/api/test/{id}',

@@ -43,10 +43,10 @@ class Renderer implements RendererInterface
     private $view;
 
     /**
-     * @param $collections
-     * @param $templatePath
+     * @param array $collections
+     * @param string $templatePath
      */
-    public function __construct($collections, $templatePath)
+    public function __construct(array $collections, $templatePath)
     {
         $this->collections = $collections;
         $this->templatePath = $templatePath;
