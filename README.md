@@ -1,6 +1,11 @@
 Vegas CMF API Documentor
 ========================
 
+[![Build Status](https://travis-ci.org/vegas-cmf/apidoc.png?branch=master)](https://travis-ci.org/vegas-cmf/apidoc)
+[![Coverage Status](https://coveralls.io/repos/vegas-cmf/apidoc/badge.png?branch=master)](https://coveralls.io/r/vegas-cmf/apidoc?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/vegas-cmf/apidoc/v/stable.png)](https://packagist.org/packages/vegas-cmf/apidoc)
+[![Total Downloads](https://poser.pugx.org/vegas-cmf/apidoc/downloads.png)](https://packagist.org/packages/vegas-cmf/apidoc)
+
 Usage
 -----
 
