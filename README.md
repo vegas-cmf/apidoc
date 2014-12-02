@@ -1,5 +1,5 @@
 Vegas CMF API Documentor
-======================
+========================
 
 Usage
 -----
@@ -237,3 +237,5 @@ mkdir public/apiDoc
 ```
 php cli/cli.php app:apidoc generate
 ```
+
+Check example documentation [http://jsbin.com/tufajuciqo/1?output](http://jsbin.com/tufajuciqo/1?output)
