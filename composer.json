@@ -1,7 +1,7 @@
 {
     "name": "vegas-cmf/apidoc",
     "type": "library",
-    "description": "Vegas CMF API Documentation generator",
+    "description": "Vegas CMF API Documentor",
     "license": "MIT",
     "authors": [
         {

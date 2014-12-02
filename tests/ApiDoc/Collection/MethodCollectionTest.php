@@ -12,13 +12,13 @@
 
 namespace Vegas\Tests\ApiDoc\Collection;
 
-use Vegas\ApiDoc\Collection\ClassCollection;
+use Vegas\ApiDoc\Collection\MethodCollection;
 
-class ClassCollectionTest extends \Vegas\Tests\TestCase
+class MethodCollectionTest extends \Vegas\Tests\TestCase
 {
     public function testShouldSetExistingProperty()
     {
-        $collection = new ClassCollection();
+        $collection = new MethodCollection();
         $this->assertInstanceOf('\Vegas\ApiDoc\CollectionAbstract', $collection);
 
         $collection->name = 'test';
@@ -37,7 +37,7 @@ class ClassCollectionTest extends \Vegas\Tests\TestCase
 
     public function testShouldNotSetNonExistingProperty()
     {
-        $collection = new ClassCollection();
+        $collection = new MethodCollection();
 
         $exception = null;
         try {
@@ -67,7 +67,7 @@ class ClassCollectionTest extends \Vegas\Tests\TestCase
 
     public function testShouldReturnBooleanForWhenCheckingProperty()
     {
-        $collection = new ClassCollection();
+        $collection = new MethodCollection();
 
         $this->assertTrue($collection->hasArgument('name'));
         $this->assertFalse($collection->hasArgument('name2'));

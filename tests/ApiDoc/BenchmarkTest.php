@@ -19,7 +19,7 @@ use Vegas\Tests\TestCase;
 
 class BenchmarkTest extends TestCase
 {
-    public function testShouldReturnTheSameTimeDifferent()
+    public function testShouldReturnTheSameTimeDifference()
     {
         $benchmark = new Benchmark();
         $reflectObject = new \ReflectionObject($benchmark);

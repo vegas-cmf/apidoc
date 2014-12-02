@@ -12,7 +12,9 @@
 
 namespace Vegas\ApiDoc\Task;
 
-use Vegas\Cli\Task\Option;
+use Phalcon\Events\Event;
+use Vegas\ApiDoc\Benchmark;
+use Vegas\ApiDoc\Generator;
 use Vegas\Mvc\View;
 
 /**
@@ -51,6 +53,21 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
     abstract protected function getOutputPath();
 
     /**
+     * Returns path where files are located
+     *
+     * @return string
+     */
+    abstract protected function getInputPath();
+
+    /**
+     * Returns path to layout file
+     * Note. Remember to skip extension
+     *
+     * @return string
+     */
+    abstract protected function getLayoutFilePath();
+
+    /**
      * Generates documentation
      *
      * Usage
@@ -60,12 +77,37 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
      */
     public function generateAction()
     {
+        $eventsManager = $this->di->get('eventsManager');
+
+        /**
+         * Benchmarks building annotations collections
+         */
+        $buildBenchmark = new Benchmark();
+        $eventsManager->attach('generator:beforeBuild', function(Event $event, Generator $generator) use ($buildBenchmark) {
+            $buildBenchmark->start();
+        });
+        $eventsManager->attach('generator:afterBuild', function(Event $event, Generator $generator) use ($buildBenchmark) {
+            $buildBenchmark->finish();
+        });
+
+        /**
+         * Benchmarks rendering html
+         */
+        $renderBenchmark = new Benchmark();
+        $eventsManager->attach('generator:beforeRender', function(\Phalcon\Events\Event $event, Generator $generator) use ($renderBenchmark) {
+            $renderBenchmark->start();
+        });
+        $eventsManager->attach('generator:beforeRender', function(\Phalcon\Events\Event $event, Generator $generator) use ($renderBenchmark) {
+            $renderBenchmark->finish();
+        });
+
         //instantiates generator by passing the input directory and regular expression for matching file names
         //set verbose on true to get information about parsed classes
-        $generator = new \Vegas\ApiDoc\Generator(APP_ROOT . '/app/modules', [
+        $generator = new Generator($this->getInputPath(), [
             'match' => '/(.*)Controller(.*)\.php/i',
             'verbose' => true
         ]);
+        $generator->setEventsManager($eventsManager);
         //builds information
         $collections = $generator->build();
         //get the view object that will be rendering output html
@@ -74,9 +116,14 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
         //instantiate default renderer
         $renderer = new \Vegas\ApiDoc\Renderer(
             $collections,
-            $view->getPartialsDir() . 'apiDoc/layout'
+            $this->getLayoutFilePath()
         );
         $renderer->setView($view);
+        /**
+         * Injects benchmarks into view
+         */
+        $renderer->setViewVar('buildBenchmark', $buildBenchmark);
+        $renderer->setViewVar('renderBenchmark', $renderBenchmark);
 
         //sets renderer to generator
         $generator->setRenderer($renderer);

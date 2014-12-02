@@ -1,4 +1,4 @@
-Vegas CMF API Documentation generator
+Vegas CMF API Documentor
 ======================
 
 Usage
@@ -36,9 +36,10 @@ class ApidocTask extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract
     {
         $view = new View($this->di->get('config')->application->view->toArray());
         $view->setDI($this->di);
+
         return $view;
     }
-    
+
     protected function getOutputPath()
     {
         return APP_ROOT . '/public/apiDoc/';
@@ -47,6 +48,11 @@ class ApidocTask extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract
     protected function getLayoutFilePath()
     {
         return APP_ROOT . '/app/layouts/partials/apiDoc/layout';
+    }
+
+    protected function getInputPath()
+    {
+        return APP_ROOT . '/app/modules';
     }
 }
 ```

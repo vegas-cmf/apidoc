@@ -48,5 +48,31 @@ class RendererTest extends \Vegas\Tests\TestCase
             $this->assertContains($collection['class']['name'], $output);
         }
     }
+
+    public function testShouldSetViewVariable()
+    {
+        $view = $this->getViewInstance();
+
+        $renderer = new Renderer([], APP_ROOT . '/app/layouts/partials/apiDoc/layout');
+        $renderer->setView($view);
+
+        $renderer->setViewVar('test', 1);
+        $renderer->render();
+
+        $this->assertNotNull('test', $view->getVar('test'));
+        $this->assertEquals(1, $view->getVar('test'));
+    }
+
+    public function testShouldThrowExceptionForInvalidViewObject()
+    {
+        $exception = null;
+        try {
+            $renderer = new Renderer([], 'foo');
+            $renderer->render();
+        } catch (\Exception $e) {
+            $exception = $e;
+        }
+        $this->assertInstanceOf('\Vegas\ApiDoc\Exception\InvalidViewComponentException', $exception);
+    }
 }
  

@@ -183,9 +183,9 @@ class Generator implements EventsAwareInterface
     /**
      * Returns the annotations reader
      *
-     * @return Memory
+     * @return \Phalcon\Annotations\AdapterInterface
      */
-    protected function getAnnotationsReader()
+    public function getAnnotationsReader()
     {
         if (!$this->annotationReader) {
             $this->setupAnnotationsReader();

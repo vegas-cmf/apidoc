@@ -98,7 +98,7 @@ abstract class CollectionAbstract implements \ArrayAccess
      * @param mixed $offset <p>
      * The offset to retrieve.
      * </p>
-     * @throws \CollectionArgumentNotFoundException
+     * @throws CollectionArgumentNotFoundException
      * @throws \Phalcon\Exception
      * @return mixed Can return all value types.
      */
@@ -108,7 +108,7 @@ abstract class CollectionAbstract implements \ArrayAccess
             return \Phalcon\Utils\Slug::generate($this->offsetGet('name'));
         }
         if (!$this->hasArgument($offset)) {
-            throw new \CollectionArgumentNotFoundException(get_called_class(), $offset);
+            throw new CollectionArgumentNotFoundException(get_called_class(), $offset);
         }
         return $this->{$offset};
     }

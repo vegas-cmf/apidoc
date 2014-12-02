@@ -85,7 +85,7 @@ class Renderer implements RendererInterface
      */
     public function render()
     {
-        if (!$this->view && $this->view instanceof \Phalcon\Mvc\ViewInterface) {
+        if (!$this->view || !$this->view instanceof \Phalcon\Mvc\ViewInterface) {
             throw new InvalidViewComponentException();
         }
 

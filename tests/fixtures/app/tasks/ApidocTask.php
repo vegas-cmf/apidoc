@@ -32,4 +32,9 @@ class ApidocTask extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract
     {
         return APP_ROOT . '/app/layouts/partials/apiDoc/layout';
     }
+
+    protected function getInputPath()
+    {
+        return APP_ROOT . '/app/modules';
+    }
 }
