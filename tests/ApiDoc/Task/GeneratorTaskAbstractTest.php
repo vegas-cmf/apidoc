@@ -14,13 +14,15 @@ namespace Vegas\Tests\ApiDoc\Task;
 
 class GeneratorTaskAbstractTest extends \Vegas\Tests\TestCase
 {
-    public static function tearDownAfterClass()
+    public function tearDown()
     {
         if (file_exists('/tmp/vegas_apidoc/index.html')) {
             unlink('/tmp/vegas_apidoc/index.html');
             rmdir('/tmp/vegas_apidoc');
         }
-        unlink('/tmp/vegas_apidoc_template.volt');
+        if (file_exists('/tmp/vegas_apidoc_template.volt')) {
+            unlink('/tmp/vegas_apidoc_template.volt');
+        }
     }
 
     private function getViewInstance()
@@ -52,7 +54,7 @@ class GeneratorTaskAbstractTest extends \Vegas\Tests\TestCase
             ->will($this->returnValue('/tmp/vegas_apidoc/'));
 
         //create template in /tmp
-        touch('/tmp/vegas_apidoc_template.volt');
+        file_put_contents('/tmp/vegas_apidoc_template.volt', '');
         $stub->expects($this->any())
             ->method('getLayoutFilePath')
             ->will($this->returnValue('/tmp/vegas_apidoc_template'));
@@ -63,6 +65,7 @@ class GeneratorTaskAbstractTest extends \Vegas\Tests\TestCase
         ob_end_clean();
 
         $this->assertNotEmpty($info);
+        $this->assertContains('Processing', $info);
         $this->assertFileExists('/tmp/vegas_apidoc/index.html');
     }
 }

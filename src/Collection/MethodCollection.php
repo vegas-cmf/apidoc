@@ -55,8 +55,6 @@ class MethodCollection extends CollectionAbstract
 
     public $url;
 
-    public $version;
-
     public $params;
 
     public $headers;

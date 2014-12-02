@@ -24,7 +24,6 @@ class FooController extends ControllerAbstract
      *  description='Foo',
      *  name='Get foo object',
      *  url='/api/foo/{id}',
-     *  version='1.0.0',
      *  params=[
      *      {name: 'id', type: 'string', description: 'Foo ID'}
      *  ],
@@ -76,7 +75,6 @@ class FooController extends ControllerAbstract
      *  description='Foo list',
      *  name='Get list of foo',
      *  url='/api/foo',
-     *  version='1.0.0',
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],

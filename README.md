@@ -4,7 +4,7 @@ Vegas CMF API Documentor
 Usage
 -----
 
-* Add vegas-cmf/apidoc to composer.json dependencies
+#### Add vegas-cmf/apidoc to composer.json dependencies
 
 ```
 "vegas-cmf/apidoc" : "1.0.0"
@@ -17,7 +17,7 @@ php composer.phar update
 ```
 
 
-* Create CLI task which extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract.php
+#### Create CLI task which extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract.php
 
 ```
 mkdir app/tasks
@@ -57,7 +57,7 @@ class ApidocTask extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract
 }
 ```
 
-* Add annotations to controllers classes
+#### Add annotations to controllers classes
 
 ```
 <?php
@@ -191,11 +191,40 @@ class TestController extends ControllerAbstract
 ##### Available parameters:
 
 ###### Class
-`name` | Name of endpoint
-`description` | Endpoint description
-`version` | API version
 
-* Create documentation layout ( you can use sample layout from tests/fixtures/app/layouts/partials/apiDoc directory ) and prepare output directory 
+`name`                  Name of endpoint
+
+`description`           Detailed description of the API endpoint
+
+`version`               API version
+
+
+###### Method
+
+`name`                  Name of API method
+
+`description`           Detailed description of the API method
+
+`method`                Determines HTTP method (POST, GET, ...)
+
+`url`                   Request path
+
+`params`                Describes parameters passed to API method
+
+`headers`               Describes headers passed in request e.g. for Authorization
+
+`errors`                Describes errors
+
+`response`              Describes response
+
+`responseContentType`   Determines response Content-Type
+
+`responseFormat`        Determines response format
+
+`responseExample`       Example of a method response
+
+
+#### Create documentation layout ( you can use sample layout from tests/fixtures/app/layouts/partials/apiDoc directory ) and prepare output directory 
 
 ```
 mkdir app/layouts/partials -p
@@ -205,7 +234,7 @@ touch cp -R vendor/vegas-cmf/apidoc/tests/fixtures/app/layouts/partials/apiDoc a
 mkdir public/apiDoc
 ```
 
-* Run CLI Task to generate documentation
+#### Run CLI Task to generate documentation
 
 ```
 php cli/cli.php app:apidoc generate

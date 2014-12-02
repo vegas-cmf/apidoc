@@ -24,7 +24,6 @@ class NestedController extends ControllerAbstract
      *  description='Nested',
      *  name='Get nested object',
      *  url='/api/nested/{id}',
-     *  version='1.0.0',
      *  params=[
      *      {name: 'id', type: 'string', description: 'Nested ID'}
      *  ],
@@ -76,7 +75,6 @@ class NestedController extends ControllerAbstract
      *  description='Nested list',
      *  name='Get list of nested',
      *  url='/api/nested',
-     *  version='1.0.0',
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],

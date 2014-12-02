@@ -25,7 +25,6 @@ class TestController extends ControllerAbstract
      *  description='Test',
      *  name='Get test object',
      *  url='/api/test/{id}',
-     *  version='1.0.0',
      *  params=[
      *      {name: 'id', type: 'string', description: 'Test ID'}
      *  ],
@@ -77,7 +76,6 @@ class TestController extends ControllerAbstract
      *  description='Tests list',
      *  name='Get list of tests',
      *  url='/api/test',
-     *  version='1.0.0',
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
