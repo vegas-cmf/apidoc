@@ -24,25 +24,38 @@ class TestController extends ControllerAbstract
      *  description='Test',
      *  name='Get test object',
      *  url='/api/test/{id}',
-     *  params=[
+     *  params={
      *      {name: 'id', type: 'string', description: 'Test ID'}
-     *  ],
-     *  headers=[
+     *  },
+     *  headers={
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
-     *  ],
-     *  errors=[
+     *  },
+     *  errors={
      *      {type: 'Error 404', description: 'Test was not found'},
      *      {type: 'Error 500', description: 'Application error'}
-     *  ],
+     *  },
+     *  requestFormat='JSON',
+     *  requestContentType='application/json',
+     *  request={
+     *      {name: 'id', type: 'MongoId', description: 'ID of something'}
+     *  },
+     *  requestExample='{
+     *      "id": "123"
+     *  }',
      *  responseFormat='JSON',
      *  responseContentType='application/json',
-     *  response=[
-     *      {name: 'id', type: 'MongoId', description: 'Test ID'},
-     *      {name: 'name', type: 'string', description: 'Foo name'}
-     *  ],
+     *  response={
+     *      {name: 'test', type: 'Object', description: 'Test object', fields: {
+     *              {name: 'id', type: 'MongoId', description: 'ID of something'},
+     *              {name: 'name', type: 'string', description: 'Name of something'}
+     *          }
+     *      }
+     *  },
      *  responseExample='{
-     *      "id": "123",
-     *      "name": "Test"
+     *      "test" : {
+     *          "id": "123",
+     *          "name": "Test"
+     *      }
      *  }'
      * )
      */
@@ -75,32 +88,52 @@ class TestController extends ControllerAbstract
      *  description='Tests list',
      *  name='Get list of tests',
      *  url='/api/test',
-     *  headers=[
+     *  headers={
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
-     *  ],
-     *  errors=[
+     *  },
+     *  errors={
      *      {type: 'Error 500', description: 'Unknown error'}
-     *  ],
+     *  },
+     *  requestFormat='JSON',
+     *  requestContentType='application/json',
+     *  request='',
+     *  requestExample='',
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response=[
-     *      [
-     *          {name: 'id', type: 'MongoId', description: 'Test ID'},
-     *          {name: 'name', type: 'string', description: 'Test name'}
-     *      ],
-     *      [
-     *          {name: 'id', type: 'MongoId', description: 'Test ID'},
-     *          {name: 'name', type: 'string', description: 'Test name'}
-     *      ]
+     *      {
+     *          {name: 'test', type: 'Object', description: 'Test object', fields: {
+     *              {name: 'id', type: 'MongoId', description: 'ID of something'},
+     *              {name: 'name', type: 'string', description: 'Name of something'},
+     *              {name: 'nested', type: 'Object', 'description' : 'Nested object', fields: {
+     *                      {name: 'name', type: 'string', 'description' : 'Name of nested'}
+     *                  }
+     *              }
+     *          }}
+     *      },
+     *      {
+     *          {name: 'test', type: 'Object', description: 'Test object', fields: {
+     *              {name: 'id', type: 'MongoId', description: 'ID of something'},
+     *              {name: 'name', type: 'string', description: 'Name of something'},
+     *              {name: 'nested', type: 'Object', 'description' : 'Nested object', fields: {
+     *                      {name: 'name', type: 'string', 'description' : 'Name of nested'}
+     *                  }
+     *              }
+     *          }}
+     *      }
      *  ],
      *  responseExample='[
      *      {
-     *          "id": "123",
-     *          "name": "Test"
+     *          "test" : {
+     *              "id": "123",
+     *              "name": "Test"
+     *          }
      *      },
      *      {
-     *          "id": "124",
-     *          "name": "Test"
+     *          "test" : {
+     *              "id": "124",
+     *              "name": "Test"
+     *          }
      *      }
      *  ]'
      * )

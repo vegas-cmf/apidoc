@@ -33,6 +33,14 @@ use Vegas\ApiDoc\CollectionAbstract;
  *      {type: 'Error 404', description: 'Object was not found'},
  *      {type: 'Error 500', description: 'Application error'}
  *  ],
+ *  requestFormat='JSON',
+ *  requestContentType='application/json',
+ *  request=[
+ *      {name: 'id', type: 'MongoId', description: 'ID of something'}
+ *  ],
+ *  requestExample='{
+ *      "id": "123"
+ *  }',
  *  responseFormat='JSON',
  *  responseContentType='application/json',
  *  response=[
@@ -60,6 +68,14 @@ class MethodCollection extends CollectionAbstract
     public $headers;
 
     public $errors;
+
+    public $request;
+
+    public $requestContentType;
+
+    public $requestFormat;
+
+    public $requestExample;
 
     public $response;
 

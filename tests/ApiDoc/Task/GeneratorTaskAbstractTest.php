@@ -36,7 +36,7 @@ class GeneratorTaskAbstractTest extends \Vegas\Tests\TestCase
         return $view;
     }
 
-    public function test()
+    public function testShouldGenerateDocumentationToOutputFile()
     {
         $stub = $this->getMockForAbstractClass('\Vegas\ApiDoc\Task\GeneratorTaskAbstract');
         $stub->expects($this->any())
@@ -48,7 +48,9 @@ class GeneratorTaskAbstractTest extends \Vegas\Tests\TestCase
             ->will($this->returnValue(APP_ROOT . '/app/modules'));
 
         //create output directory in /tmp
-        mkdir('/tmp/vegas_apidoc');
+        if (!file_exists('/tmp/vegas_apidoc')) {
+            mkdir('/tmp/vegas_apidoc');
+        }
         $stub->expects($this->any())
             ->method('getOutputPath')
             ->will($this->returnValue('/tmp/vegas_apidoc/'));

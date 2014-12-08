@@ -84,8 +84,8 @@ class TestController extends ControllerAbstract
     /**
      * @api(
      *  method='GET',
-     *  description='Test',
-     *  name='Get test object',
+     *  description='Returns Test object',
+     *  name='Get test',
      *  url='/api/test/{id}',
      *  params=[
      *      {name: 'id', type: 'string', description: 'Test ID'}
@@ -135,8 +135,8 @@ class TestController extends ControllerAbstract
     /**
      * @api(
      *  method='GET',
-     *  description='Tests list',
-     *  name='Get list of tests',
+     *  description='Returns list of tests objects',
+     *  name='Get tests',
      *  url='/api/test',
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}

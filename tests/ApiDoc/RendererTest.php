@@ -40,7 +40,7 @@ class RendererTest extends \Vegas\Tests\TestCase
         $renderer = new Renderer($collections, APP_ROOT . '/app/layouts/partials/apiDoc/layout');
         $renderer->setView($this->getViewInstance());
         $output = $renderer->render();
-
+file_put_contents('/tmp/vegas_apidoc_index.html', $output);
         $this->assertNotEmpty($output);
         $this->assertTag(['tag' => 'body'], $output);
 
