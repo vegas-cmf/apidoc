@@ -30,7 +30,7 @@ mkdir app/tasks
 touch app/tasks/ApidocTask.php
 ```
 
-```
+```php
 //app/tasks/ApidocTask.php
 use Vegas\Cli\Task\Option;
 use Vegas\Mvc\View;
@@ -64,7 +64,7 @@ class ApidocTask extends \Vegas\ApiDoc\Task\GeneratorTaskAbstract
 
 #### Add annotations to controllers classes
 
-```
+```php
 <?php
 namespace ApiTest\Controllers;
 
