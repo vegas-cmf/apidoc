@@ -84,14 +84,14 @@ class FooController extends ControllerAbstract
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response=[
-     *      [
+     *      {
      *          {name: 'id', type: 'MongoId', description: 'Foo ID'},
      *          {name: 'name', type: 'string', description: 'Foo name'}
-     *      ],
-     *      [
+     *      },
+     *      {
      *          {name: 'id', type: 'MongoId', description: 'Foo ID'},
      *          {name: 'name', type: 'string', description: 'Foo name'}
-     *      ]
+     *      }
      *  ],
      *  responseExample='[
      *      {

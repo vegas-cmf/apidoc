@@ -41,7 +41,6 @@ use Vegas\ApiDoc\Exception\InvalidRendererException;
  *  description='Some longer description about method',
  *  name='Short name/description about method',
  *  url='/api/endpoint/{id}',
- *  version='1.0.0',
  *  params=[
  *      {name: 'id', type: 'string', description: 'ID of something'}
  *  ],

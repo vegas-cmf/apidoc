@@ -1,8 +1,8 @@
-{% if method['response'] is defined and method['response'] is type('array') and method['response']|length > 0 %}
+{% if method['request'] is defined and method['request'] is type('array') and method['request']|length > 0 %}
     <h4>Body</h4>
     <table class="table table-bordered table-hover">
-        {% if method['response'][0][0] is defined %}
-        {% for response in method['response'] %}
+        {% if method['request'][0][0] is defined %}
+        {% for request in method['request'] %}
         <tr>
             <td>
                 <table class="table table-bordered">
@@ -11,7 +11,7 @@
                         <th>Type</th>
                         <th>Description</th>
                     </tr>
-                    {% for subResponse in response %}
+                    {% for subResponse in request %}
                     <tr>
                         <td><code>{{ subResponse['name'] }}</code></td>
                         <td><i>{{ subResponse['type'] }}</i></td>
@@ -31,11 +31,11 @@
             <th>Type</th>
             <th>Description</th>
         </tr>
-        {% for response in method['response'] %}
+        {% for request in method['request'] %}
         <tr>
-            <td><code>{{ response['name'] }}</code></td>
-            <td><i>{{ response['type'] }}</i></td>
-            <td>{{ response['description'] }}</td>
+            <td><code>{{ request['name'] }}</code></td>
+            <td><i>{{ request['type'] }}</i></td>
+            <td>{{ request['description'] }}</td>
         </tr>
         {% endfor %}
         {% endif %}

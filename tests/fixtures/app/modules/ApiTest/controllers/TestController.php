@@ -45,11 +45,9 @@ class TestController extends ControllerAbstract
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response={
-     *      {name: 'test', type: 'Object', description: 'Test object', fields: {
-     *              {name: 'id', type: 'MongoId', description: 'ID of something'},
-     *              {name: 'name', type: 'string', description: 'Name of something'}
-     *          }
-     *      }
+     *      {name: 'test', type: 'Object', description: 'Test object'},
+     *      {name: 'test.id', type: 'MongoId', description: 'ID of something'},
+     *      {name: 'test.name', type: 'string', description: 'Name of something'}
      *  },
      *  responseExample='{
      *      "test" : {
@@ -102,37 +100,37 @@ class TestController extends ControllerAbstract
      *  responseContentType='application/json',
      *  response=[
      *      {
-     *          {name: 'test', type: 'Object', description: 'Test object', fields: {
-     *              {name: 'id', type: 'MongoId', description: 'ID of something'},
-     *              {name: 'name', type: 'string', description: 'Name of something'},
-     *              {name: 'nested', type: 'Object', 'description' : 'Nested object', fields: {
-     *                      {name: 'name', type: 'string', 'description' : 'Name of nested'}
-     *                  }
-     *              }
-     *          }}
+     *          {name: 'test', type: 'Object', description: 'Test object'},
+     *          {name: 'test.id', type: 'MongoId', description: 'ID of something'},
+     *          {name: 'test.name', type: 'string', description: 'Name of something'},
+     *          {name: 'test.nested', type: 'Object', description: 'Nested object'},
+     *          {name: 'test.nested.name', type: 'string', description: 'Name of nested'}
      *      },
      *      {
-     *          {name: 'test', type: 'Object', description: 'Test object', fields: {
-     *              {name: 'id', type: 'MongoId', description: 'ID of something'},
-     *              {name: 'name', type: 'string', description: 'Name of something'},
-     *              {name: 'nested', type: 'Object', 'description' : 'Nested object', fields: {
-     *                      {name: 'name', type: 'string', 'description' : 'Name of nested'}
-     *                  }
-     *              }
-     *          }}
+     *          {name: 'test', type: 'Object', description: 'Test object'},
+     *          {name: 'test.id', type: 'MongoId', description: 'ID of something'},
+     *          {name: 'test.name', type: 'string', description: 'Name of something'},
+     *          {name: 'test.nested', type: 'Object', description: 'Nested object'},
+     *          {name: 'test.nested.name', type: 'string', description: 'Name of nested'}
      *      }
      *  ],
      *  responseExample='[
      *      {
      *          "test" : {
      *              "id": "123",
-     *              "name": "Test"
+     *              "name": "Test",
+     *              "nested": {
+     *                  "name" : "Name"
+     *              }
      *          }
      *      },
      *      {
      *          "test" : {
      *              "id": "124",
-     *              "name": "Test"
+     *              "name": "Test 2",
+     *              "nested" : {
+     *                  "name" : "Name 2"
+     *              }
      *          }
      *      }
      *  ]'

@@ -84,14 +84,14 @@ class NestedController extends ControllerAbstract
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response=[
-     *      [
+     *      {
      *          {name: 'id', type: 'MongoId', description: 'Nested ID'},
      *          {name: 'name', type: 'string', description: 'Nested name'}
-     *      ],
-     *      [
+     *      },
+     *      {
      *          {name: 'id', type: 'MongoId', description: 'Nested ID'},
      *          {name: 'name', type: 'string', description: 'Nested name'}
-     *      ]
+     *      }
      *  ],
      *  responseExample='[
      *      {
