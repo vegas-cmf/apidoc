@@ -97,6 +97,14 @@ class TestController extends ControllerAbstract
      *      {type: 'Error 404', description: 'Test was not found'},
      *      {type: 'Error 500', description: 'Application error'}
      *  ],
+     *  requestFormat='JSON',
+     *  requestContentType='application/json',
+     *  request={
+     *      {name: 'id', type: 'MongoId', description: 'ID of something'}
+     *  },
+     *  requestExample='{
+     *      "id": "123"
+     *  }',
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response=[
@@ -144,26 +152,30 @@ class TestController extends ControllerAbstract
      *  errors=[
      *      {type: 'Error 500', description: 'Unknown error'}
      *  ],
+     *  requestFormat='JSON',
+     *  requestContentType='application/json',
+     *  request=''
+     *  requestExample='',
      *  responseFormat='JSON',
      *  responseContentType='application/json',
      *  response=[
-     *      [
+     *      {
      *          {name: 'id', type: 'MongoId', description: 'Test ID'},
      *          {name: 'name', type: 'string', description: 'Test name'}
-     *      ],
-     *      [
+     *      },
+     *      {
      *          {name: 'id', type: 'MongoId', description: 'Test ID'},
      *          {name: 'name', type: 'string', description: 'Test name'}
-     *      ]
+     *      }
      *  ],
      *  responseExample='[
      *      {
      *          "id": "123",
-     *          "name": "Test"
+     *          "name": "Test 1"
      *      },
      *      {
      *          "id": "124",
-     *          "name": "Test"
+     *          "name": "Test 2"
      *      }
      *  ]'
      * )
@@ -218,13 +230,21 @@ class TestController extends ControllerAbstract
 
 `errors`                Describes errors
 
+`request`               Describes request
+
+`requestContentType`    Determines request Content-Type
+
+`requestFormat`         Determines request format
+
+`requestExample`        Example of request body
+
 `response`              Describes response
 
 `responseContentType`   Determines response Content-Type
 
 `responseFormat`        Determines response format
 
-`responseExample`       Example of a method response
+`responseExample`       Example of response body
 
 
 #### Create documentation layout ( you can use sample layout from tests/fixtures/app/layouts/partials/apiDoc directory ) and prepare output directory 
@@ -243,4 +263,4 @@ mkdir public/apiDoc
 php cli/cli.php app:apidoc generate
 ```
 
-Check example documentation [http://jsbin.com/tufajuciqo/1?output](http://jsbin.com/tufajuciqo/1?output)
+Check example documentation [http://jsbin.com/sigebogegu/1](http://jsbin.com/sigebogegu/1)
