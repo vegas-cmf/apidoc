@@ -30,10 +30,13 @@ class TestController extends ControllerAbstract
      *  headers={
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  },
-     *  errors={
-     *      {type: 'Error 404', description: 'Test was not found'},
-     *      {type: 'Error 500', description: 'Application error'}
-     *  },
+     *  responseCodes=[
+     *      {code: 111, type: 'Info', description: 'Connection refused'},
+     *      {code: 200, type: 'Success', description: 'OK'},
+     *      {code: 300, type: 'Redirect', description: 'Found'},
+     *      {code: 404, type: 'Error', description: 'Record not found'},
+     *      {code: 500, type: 'Error', description: 'Application error'}
+     *  ],
      *  requestFormat='JSON',
      *  requestContentType='application/json',
      *  request={
@@ -89,9 +92,9 @@ class TestController extends ControllerAbstract
      *  headers={
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  },
-     *  errors={
-     *      {type: 'Error 500', description: 'Unknown error'}
-     *  },
+     *  responseCodes=[
+     *      {code: 500, type: 'Error', description: 'Application error'}
+     *  ],
      *  requestFormat='JSON',
      *  requestContentType='application/json',
      *  request='',

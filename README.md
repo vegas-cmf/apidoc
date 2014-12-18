@@ -12,7 +12,7 @@ Usage
 #### Add vegas-cmf/apidoc to composer.json dependencies
 
 ```
-"vegas-cmf/apidoc" : "1.0.0"
+"vegas-cmf/apidoc" : "1.0.*"
 ```
 
 and run composer update
@@ -93,10 +93,6 @@ class TestController extends ControllerAbstract
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
-     *  errors=[
-     *      {type: 'Error 404', description: 'Test was not found'},
-     *      {type: 'Error 500', description: 'Application error'}
-     *  ],
      *  requestFormat='JSON',
      *  requestContentType='application/json',
      *  request={
@@ -110,6 +106,13 @@ class TestController extends ControllerAbstract
      *  response=[
      *      {name: 'id', type: 'MongoId', description: 'Test ID'},
      *      {name: 'name', type: 'string', description: 'Foo name'}
+     *  ],
+     *  responseCodes=[
+     *      {code: 111, type: 'Info', description: 'Connection refused'},
+     *      {code: 200, type: 'Success', description: 'OK'},
+     *      {code: 300, type: 'Redirect', description: 'Found'},
+     *      {code: 404, type: 'Error', description: 'Record not found'},
+     *      {code: 500, type: 'Error', description: 'Application error'}
      *  ],
      *  responseExample='{
      *      "id": "123",
@@ -149,8 +152,9 @@ class TestController extends ControllerAbstract
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
-     *  errors=[
-     *      {type: 'Error 500', description: 'Unknown error'}
+     *  responseCodes=[
+     *      {code: 500, type: 'Error', description: 'Unknown error'}
+     *      {code: 200, type: 'Success', description: 'Ok'}
      *  ],
      *  requestFormat='JSON',
      *  requestContentType='application/json',
@@ -228,8 +232,6 @@ class TestController extends ControllerAbstract
 
 `headers`               Describes headers passed in request e.g. for Authorization
 
-`errors`                Describes errors
-
 `request`               Describes request
 
 `requestContentType`    Determines request Content-Type
@@ -246,6 +248,7 @@ class TestController extends ControllerAbstract
 
 `responseExample`       Example of response body
 
+`responseCodes`         Describes response status codes
 
 #### Create documentation layout ( you can use sample layout from tests/fixtures/app/layouts/partials/apiDoc directory ) and prepare output directory 
 
@@ -263,4 +266,4 @@ mkdir public/apiDoc
 php cli/cli.php app:apidoc generate
 ```
 
-Check example documentation [http://jsbin.com/sigebogegu/1](http://jsbin.com/sigebogegu/1)
+See sample [http://jsbin.com/xeyetevuro/1](http://jsbin.com/xeyetevuro/1)

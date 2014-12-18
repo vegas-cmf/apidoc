@@ -19,7 +19,7 @@
             {{ partial('apiDoc/partials/method/method', ['method': method]) }}
             {{ partial('apiDoc/partials/method/url', ['method': method]) }}
             {{ partial('apiDoc/partials/method/params', ['method': method]) }}
-            {{ partial('apiDoc/partials/method/errors', ['method': method]) }}
+            {{ partial('apiDoc/partials/method/responseCodes', ['method': method]) }}
 
             <div class="clearfix"></div>
 

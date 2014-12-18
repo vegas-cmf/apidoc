@@ -30,9 +30,9 @@ class FooController extends ControllerAbstract
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
-     *  errors=[
-     *      {type: 'Error 404', description: 'Foo was not found'},
-     *      {type: 'Error 500', description: 'Application error'}
+     *  responseCodes=[
+     *      {code: 404, type: 'Error', description: 'Record not found'},
+     *      {code: 500, type: 'Error', description: 'Application error'}
      *  ],
      *  responseFormat='JSON',
      *  responseContentType='application/json',
@@ -78,8 +78,8 @@ class FooController extends ControllerAbstract
      *  headers=[
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
-     *  errors=[
-     *      {type: 'Error 500', description: 'Unknown error'}
+     *  responseCodes=[
+     *      {code: 500, type: 'Error', description: 'Application error'}
      *  ],
      *  responseFormat='JSON',
      *  responseContentType='application/json',

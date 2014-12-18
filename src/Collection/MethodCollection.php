@@ -29,9 +29,9 @@ use Vegas\ApiDoc\CollectionAbstract;
  *  headers=[
  *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
  *  ],
- *  errors=[
- *      {type: 'Error 404', description: 'Object was not found'},
- *      {type: 'Error 500', description: 'Application error'}
+ *  responseCodes=[
+ *      {code: 400, type: 'Error', description: 'Object was not found'},
+ *      {code: 500, type: 'Error', description: 'Application error'}
  *  ],
  *  requestFormat='JSON',
  *  requestContentType='application/json',
@@ -67,8 +67,6 @@ class MethodCollection extends CollectionAbstract
 
     public $headers;
 
-    public $errors;
-
     public $request;
 
     public $requestContentType;
@@ -84,6 +82,8 @@ class MethodCollection extends CollectionAbstract
     public $responseFormat;
 
     public $responseExample;
+
+    public $responseCodes;
 
     public $description;
 
