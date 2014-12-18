@@ -1,6 +1,6 @@
 {
     "name": "vegas-cmf/apidoc",
-    "version" : "",
+    "version" : "1.0.1",
     "type": "library",
     "description": "Vegas CMF API Documentor",
     "license": "MIT",
