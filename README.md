@@ -109,11 +109,11 @@ class TestController extends ControllerAbstract
      *      {name: 'name', type: 'string', description: 'Foo name'}
      *  ],
      *  responseCodes=[
-     *      {code: 111, type: 'Info', description: 'Connection refused'},
-     *      {code: 200, type: 'Success', description: 'OK'},
-     *      {code: 300, type: 'Redirect', description: 'Found'},
-     *      {code: 404, type: 'Error', description: 'Record not found'},
-     *      {code: 500, type: 'Error', description: 'Application error'}
+     *      {code: 111, description: 'Connection refused'},
+     *      {code: 200, description: 'OK'},
+     *      {code: 300, description: 'Found'},
+     *      {code: 404, description: 'Record not found'},
+     *      {code: 500, description: 'Application error'}
      *  ],
      *  responseExample='{
      *      "id": "123",
@@ -154,8 +154,8 @@ class TestController extends ControllerAbstract
      *      {name: 'HTTP_X_AUTH', description: 'Authentication token'}
      *  ],
      *  responseCodes=[
-     *      {code: 500, type: 'Error', description: 'Unknown error'}
-     *      {code: 200, type: 'Success', description: 'Ok'}
+     *      {code: 500, description: 'Unknown error'}
+     *      {code: 200, description: 'Ok'}
      *  ],
      *  requestFormat='JSON',
      *  requestContentType='application/json',
