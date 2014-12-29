@@ -11,13 +11,13 @@
  */
 
 namespace Vegas\ApiDoc\Exception;
+use Vegas\ApiDoc\Exception;
 
 /**
  * Class InvalidViewComponentException
  * @package Vegas\ApiDoc\Exception
  */
-class InvalidViewComponentException extends \Vegas\ApiDoc\Exception
+class InvalidViewComponentException extends Exception
 {
     protected $message = 'Invalid view component';
 }
- 

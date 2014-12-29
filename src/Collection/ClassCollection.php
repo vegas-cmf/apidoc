@@ -34,4 +34,4 @@ class ClassCollection extends CollectionAbstract
     public $description;
 
     public $version;
-} 
+}

@@ -88,4 +88,4 @@ class MethodCollection extends CollectionAbstract
     public $description;
 
     public $name;
-} 
+}

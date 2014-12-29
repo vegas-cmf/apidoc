@@ -12,6 +12,7 @@
 
 namespace Vegas\ApiDoc;
 
+use Phalcon\Mvc\ViewInterface;
 use Vegas\ApiDoc\Exception\InvalidViewComponentException;
 
 /**
@@ -38,7 +39,7 @@ class Renderer implements RendererInterface
     private $templatePath;
 
     /**
-     * @var \Phalcon\Mvc\ViewInterface
+     * @var ViewInterface
      */
     private $view;
 
@@ -58,9 +59,9 @@ class Renderer implements RendererInterface
     }
 
     /**
-     * @param \Phalcon\Mvc\ViewInterface $view
+     * @param ViewInterface $view
      */
-    public function setView(\Phalcon\Mvc\ViewInterface $view)
+    public function setView(ViewInterface $view)
     {
         $this->view = $view;
     }
@@ -85,7 +86,7 @@ class Renderer implements RendererInterface
      */
     public function render()
     {
-        if (!$this->view || !$this->view instanceof \Phalcon\Mvc\ViewInterface) {
+        if (!$this->view || !$this->view instanceof ViewInterface) {
             throw new InvalidViewComponentException();
         }
 

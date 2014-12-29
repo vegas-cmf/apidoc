@@ -75,4 +75,3 @@ class RendererTest extends \Vegas\Tests\TestCase
         $this->assertInstanceOf('\Vegas\ApiDoc\Exception\InvalidViewComponentException', $exception);
     }
 }
- 

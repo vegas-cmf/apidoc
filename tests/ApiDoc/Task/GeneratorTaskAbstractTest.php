@@ -71,4 +71,3 @@ class GeneratorTaskAbstractTest extends \Vegas\Tests\TestCase
         $this->assertFileExists('/tmp/vegas_apidoc/index.html');
     }
 }
- 

@@ -142,4 +142,3 @@ class GeneratorTest extends \Vegas\Tests\TestCase
         $this->assertInstanceOf('\Phalcon\Annotations\Adapter\Files', $generator->getAnnotationsReader());
     }
 }
- 

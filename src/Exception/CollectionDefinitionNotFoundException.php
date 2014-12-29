@@ -27,6 +27,6 @@ class CollectionDefinitionNotFoundException extends Exception
      */
     public function __construct($collectionName)
     {
-        $this->message = spritnf($this->message, $collectionName);
+        $this->message = sprintf($this->message, $collectionName);
     }
-} 
+}

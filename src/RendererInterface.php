@@ -28,4 +28,3 @@ interface RendererInterface
      */
     public function render();
 }
- 

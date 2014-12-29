@@ -19,4 +19,4 @@ namespace Vegas\ApiDoc;
 class Exception extends \Vegas\Exception
 {
     protected $message = 'Docs generator exception';
-} 
+}

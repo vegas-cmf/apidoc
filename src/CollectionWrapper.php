@@ -12,6 +12,7 @@
 
 namespace Vegas\ApiDoc;
 
+use Phalcon\Annotations\Annotation;
 use Vegas\ApiDoc\Exception\CollectionDefinitionNotFoundException;
 
 /**
@@ -21,7 +22,7 @@ use Vegas\ApiDoc\Exception\CollectionDefinitionNotFoundException;
 class CollectionWrapper
 {
     /**
-     * @var \Phalcon\Annotations\Annotation
+     * @var Annotation
      */
     private $annotation;
 
@@ -34,10 +35,10 @@ class CollectionWrapper
      * Creates wrapper for specific collection
      *
      * @param $collectionName
-     * @param \Phalcon\Annotations\Annotation $annotation
+     * @param Annotation $annotation
      * @throws CollectionDefinitionNotFoundException
      */
-    public function __construct($collectionName, \Phalcon\Annotations\Annotation $annotation)
+    public function __construct($collectionName, Annotation $annotation)
     {
         try {
             $this->collection = call_user_func(function() use ($collectionName) {
@@ -74,4 +75,4 @@ class CollectionWrapper
     {
         return $this->collection;
     }
-} 
+}

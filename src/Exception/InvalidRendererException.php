@@ -11,13 +11,13 @@
  */
 
 namespace Vegas\ApiDoc\Exception;
+use Vegas\ApiDoc\Exception;
 
 /**
  * Class InvalidRendererException
  * @package Vegas\ApiDoc\Exception
  */
-class InvalidRendererException extends \Vegas\ApiDoc\Exception
+class InvalidRendererException extends Exception
 {
     protected $message = 'Invalid renderer component';
 }
- 

@@ -12,6 +12,7 @@
 
 namespace Vegas\ApiDoc;
 
+use Phalcon\Utils\Slug;
 use Vegas\ApiDoc\Exception\CollectionArgumentNotFoundException;
 
 /**
@@ -105,7 +106,7 @@ abstract class CollectionAbstract implements \ArrayAccess
     public function offsetGet($offset)
     {
         if ($offset == 'slug') {
-            return \Phalcon\Utils\Slug::generate($this->offsetGet('name'));
+            return Slug::generate($this->offsetGet('name'));
         }
         if (!$this->hasArgument($offset)) {
             throw new CollectionArgumentNotFoundException(get_called_class(), $offset);

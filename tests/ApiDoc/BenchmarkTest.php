@@ -41,4 +41,4 @@ class BenchmarkTest extends TestCase
             $benchmark->getGenerationTime()
         );
     }
-} 
+}

@@ -12,10 +12,11 @@
 
 namespace Vegas\ApiDoc\Task;
 
-use Phalcon\Events\Event;
 use Vegas\ApiDoc\Benchmark;
 use Vegas\ApiDoc\Generator;
-use Vegas\Mvc\View;
+use Vegas\ApiDoc\Renderer;
+use Vegas\Cli\Task;
+use Vegas\Cli\Task\Action;
 
 /**
  * Class GeneratorTaskAbstract
@@ -24,7 +25,7 @@ use Vegas\Mvc\View;
  *
  * @package Vegas\ApiDoc\Task
  */
-abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
+abstract class GeneratorTaskAbstract extends Task
 {
 
     /**
@@ -34,7 +35,7 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
      */
     public function setOptions()
     {
-        $action = new \Vegas\Cli\Task\Action('generate', 'Generate api doc');
+        $action = new Action('generate', 'Generate api doc');
         $this->addTaskAction($action);
     }
 
@@ -77,16 +78,19 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
      */
     public function generateAction()
     {
+        /**
+         * @var \Phalcon\Events\Manager $eventsManager
+         */
         $eventsManager = $this->di->get('eventsManager');
 
         /**
          * Benchmarks building annotations collections
          */
         $buildBenchmark = new Benchmark();
-        $eventsManager->attach('generator:beforeBuild', function(Event $event, Generator $generator) use ($buildBenchmark) {
+        $eventsManager->attach('generator:beforeBuild', function() use ($buildBenchmark) {
             $buildBenchmark->start();
         });
-        $eventsManager->attach('generator:afterBuild', function(Event $event, Generator $generator) use ($buildBenchmark) {
+        $eventsManager->attach('generator:afterBuild', function() use ($buildBenchmark) {
             $buildBenchmark->finish();
         });
 
@@ -94,10 +98,10 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
          * Benchmarks rendering html
          */
         $renderBenchmark = new Benchmark();
-        $eventsManager->attach('generator:beforeRender', function(\Phalcon\Events\Event $event, Generator $generator) use ($renderBenchmark) {
+        $eventsManager->attach('generator:beforeRender', function() use ($renderBenchmark) {
             $renderBenchmark->start();
         });
-        $eventsManager->attach('generator:beforeRender', function(\Phalcon\Events\Event $event, Generator $generator) use ($renderBenchmark) {
+        $eventsManager->attach('generator:beforeRender', function() use ($renderBenchmark) {
             $renderBenchmark->finish();
         });
 
@@ -114,7 +118,7 @@ abstract class GeneratorTaskAbstract extends \Vegas\Cli\Task
         $view = $this->getView();
 
         //instantiate default renderer
-        $renderer = new \Vegas\ApiDoc\Renderer(
+        $renderer = new Renderer(
             $collections,
             $this->getLayoutFilePath()
         );

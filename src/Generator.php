@@ -14,9 +14,11 @@ namespace Vegas\ApiDoc;
 
 use Phalcon\Annotations\Adapter\Memory;
 use Phalcon\Annotations\AdapterInterface;
-use Phalcon\DI;
+use Phalcon\Annotations\Collection;
+use Phalcon\Annotations\Reader;
 use Phalcon\Events\EventsAwareInterface;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Loader;
 use Vegas\ApiDoc\Exception\InvalidRendererException;
 
 /**
@@ -109,7 +111,7 @@ class Generator implements EventsAwareInterface
     private $options;
 
     /**
-     * @var \Phalcon\Loader
+     * @var Loader
      */
     private $loader;
 
@@ -134,12 +136,13 @@ class Generator implements EventsAwareInterface
     {
         $this->directory = $directory;
         $this->options = $options;
-        $this->annotationParser = new \Phalcon\Annotations\Reader();
-        $this->loader = new \Phalcon\Loader();
+        $this->annotationParser = new Reader();
+        $this->loader = new Loader();
     }
 
     /**
      * Sets default events manager
+     * @param ManagerInterface $eventsManager
      */
     public function setEventsManager($eventsManager)
     {
@@ -172,7 +175,7 @@ class Generator implements EventsAwareInterface
      */
     public function setupAnnotationsReader(AdapterInterface $adapter = null)
     {
-        if (null == $adapter) {
+        if (null === $adapter) {
             $this->annotationReader = new Memory();
         } else {
             $this->annotationReader = $adapter;
@@ -270,7 +273,7 @@ class Generator implements EventsAwareInterface
             $classes[ltrim($className, '\\')] = $file->getPathname();
         }
 
-        //classes autoloading
+        //classes autoloader
         $this->loader->registerClasses($classes, true);
         $this->loader->register();
 
@@ -286,17 +289,17 @@ class Generator implements EventsAwareInterface
     protected function resolveFileClassName(\SplFileInfo $fileInfo)
     {
         $relativeFilePath = str_replace(
-            $this->directory,
-            '',
-            $fileInfo->getPath()) . DIRECTORY_SEPARATOR .
-                $fileInfo->getBasename('.' . $fileInfo->getExtension()
-        );
+                $this->directory,
+                '',
+                $fileInfo->getPath()) . DIRECTORY_SEPARATOR .
+            $fileInfo->getBasename('.' . $fileInfo->getExtension()
+            );
 
         //converts file path to namespace
         //DIRECTORY_SEPARATOR will be converted to namespace separator => \
         //each directory name will be converted to first upper case
         $splitPath = explode(DIRECTORY_SEPARATOR, $relativeFilePath);
-        $namespace = implode('\\', array_map(function($item) {
+        $namespace = implode('\\', array_map(function ($item) {
             return ucfirst($item);
         }, $splitPath));
 
@@ -331,7 +334,7 @@ class Generator implements EventsAwareInterface
      */
     protected function parseAnnotations($annotations)
     {
-        if (!$annotations['class'] instanceof \Phalcon\Annotations\Collection) {
+        if (!$annotations['class'] instanceof Collection) {
             return array();
         }
         //get api from class annotation
@@ -375,7 +378,7 @@ class Generator implements EventsAwareInterface
             $this->eventsManager->fire('generator:beforeRender', $this);
         }
 
-        if (!$this->renderer instanceof \Vegas\ApiDoc\RendererInterface) {
+        if (!$this->renderer instanceof RendererInterface) {
             throw new InvalidRendererException();
         }
         $output = $this->renderer->render();

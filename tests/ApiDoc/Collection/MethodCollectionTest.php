@@ -72,4 +72,4 @@ class MethodCollectionTest extends \Vegas\Tests\TestCase
         $this->assertTrue($collection->hasArgument('name'));
         $this->assertFalse($collection->hasArgument('name2'));
     }
-} 
+}

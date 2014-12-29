@@ -5,6 +5,7 @@ Vegas CMF API Documentor
 [![Coverage Status](https://coveralls.io/repos/vegas-cmf/apidoc/badge.png?branch=master)](https://coveralls.io/r/vegas-cmf/apidoc?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/vegas-cmf/apidoc/v/stable.png)](https://packagist.org/packages/vegas-cmf/apidoc)
 [![Total Downloads](https://poser.pugx.org/vegas-cmf/apidoc/downloads.png)](https://packagist.org/packages/vegas-cmf/apidoc)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/3fc72828-ca92-4d4e-90e0-9dc4c5ef6481/mini.png)](https://insight.sensiolabs.com/projects/3fc72828-ca92-4d4e-90e0-9dc4c5ef6481)
 
 Usage
 -----
