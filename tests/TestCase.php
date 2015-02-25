@@ -14,7 +14,7 @@ namespace Vegas\Tests;
 use Phalcon\DI;
 use Vegas\Mvc\Application;
 use Vegas\Mvc\Controller\Crud;
-use Vegas\Mvc\Module\ModuleLoader;
+use Vegas\Mvc\Module\Loader as ModuleLoader;
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $_SERVER['REQUEST_URI'] = '/';
 
         $this->di = DI::getDefault();
-        $modules = ModuleLoader::dump($this->di);
+        $modules = (new ModuleLoader())->dump(TESTS_ROOT_DIR . '/fixtures/app', TESTS_ROOT_DIR . '/fixtures/app/config/');
 
         $app = new Application();
         $app->registerModules($modules);

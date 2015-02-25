@@ -2,7 +2,7 @@
 
 namespace ApiTest\Controllers;
 
-use Vegas\Mvc\Controller\ControllerAbstract;
+use Vegas\Mvc\ControllerAbstract;
 
 class EmptyController extends ControllerAbstract
 {

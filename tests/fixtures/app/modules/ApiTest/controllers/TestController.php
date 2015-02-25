@@ -6,7 +6,7 @@
 namespace ApiTest\Controllers;
 
 use ApiTest\Services\Exception\ApiException;
-use Vegas\Mvc\Controller\ControllerAbstract;
+use Vegas\Mvc\ControllerAbstract;
 use Phalcon\Mvc\Dispatcher;
 
 /**

@@ -15,7 +15,7 @@ namespace Vegas\ApiDoc\Task;
 use Vegas\ApiDoc\Benchmark;
 use Vegas\ApiDoc\Generator;
 use Vegas\ApiDoc\Renderer;
-use Vegas\Cli\Task;
+use Vegas\Cli\TaskAbstract;
 use Vegas\Cli\Task\Action;
 
 /**
@@ -25,7 +25,7 @@ use Vegas\Cli\Task\Action;
  *
  * @package Vegas\ApiDoc\Task
  */
-abstract class GeneratorTaskAbstract extends Task
+abstract class GeneratorTaskAbstract extends TaskAbstract
 {
 
     /**
